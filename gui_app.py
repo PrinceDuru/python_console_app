@@ -8,14 +8,14 @@ from tkinter.font import Font
 from tkinter.ttk import Combobox
 
 
-class HelloCentennial(Frame):
-    def __init__(self, my_window):
-        Frame.__init__(self, my_window)
+class SurveyApp(Frame):
+    def __init__(self, App_Window):
+        Frame.__init__(self, App_Window)
 
         self.radioBtnvalue = StringVar()
-        self.combobtnValue = StringVar()
-        self.cb1 = StringVar()
-        self.cb2 = StringVar()
+        self.comboBtnValue1 = StringVar()
+        self.comboBtnValue2 = StringVar()
+        self.comboBtnValue3 = StringVar()
         self.progNameValue = StringVar()
         self.userNameValue = StringVar()
 
@@ -26,60 +26,57 @@ class HelloCentennial(Frame):
         self.title_font = Font(family='Helvetica', size=18, weight="bold")   
 
         # create controls
-        self.lbl_title = Label(self, text="ICET Student Survey", font=self.title_font, bg=self.color)
-        self.lbl_full_name = Label(self, text="Full name:", font=self.font, bg=self.color)
-        self.lbl_residency = Label(self, text="Residency: ", font=self.font, bg=self.color)
-        self.lbl_program = Label(self, text="Programs ", font=self.font, bg=self.color)
-        self.lbl_courses = Label(self, text="Courses", font=self.font, bg=self.color)
+        self.label_title = Label(self, text="ICET Student Survey", font=self.title_font, bg=self.color)
+        self.label_full_name = Label(self, text="Full name:", font=self.font, bg=self.color)
+        self.label_residency = Label(self, text="Residency: ", font=self.font, bg=self.color)
+        self.label_program = Label(self, text="Programs ", font=self.font, bg=self.color)
+        self.label_courses = Label(self, text="Courses", font=self.font, bg=self.color)
 
-        self.rdb_domestic = Radiobutton(self, text="Domestic", value='dom', variable=self.radioBtnvalue, font=self.font, bg=self.color)
-        self.rdb_international = Radiobutton(self, text="International", value='intl', variable=self.radioBtnvalue, bg=self.color)
+        self.radioBtn_domestic = Radiobutton(self, text="Domestic", value='dom', variable=self.radioBtnvalue, font=self.font, bg=self.color)
+        self.radioBtn_international = Radiobutton(self, text="International", value='intl', variable=self.radioBtnvalue, bg=self.color)
         self.radioBtnvalue.set("dom")
 
-        self.chk_programming = Checkbutton(self, text='Programming 1', onvalue='COMP100', offvalue='',  variable=self.cb, bg=self.color)
-        self.chk_web = Checkbutton(self, text='Web Page Design', onvalue='COMP213', offvalue='', variable=self.cb1, bg=self.color)
-        self.chk_software = Checkbutton(self, text='Software Engineering', onvalue='COMP120', offvalue='',  variable=self.cb2, bg=self.color)
-        self.cb.set("COMP100")
-        self.cb1.set("COMP213")
+        self.chkBx_programming = Checkbutton(self, text='Programming 1', onvalue='COMP100', offvalue='',  variable=self.comboBtnValue1, bg=self.color)
+        self.chkBx_web = Checkbutton(self, text='Web Page Design', onvalue='COMP213', offvalue='', variable=self.comboBtnValue2, bg=self.color)
+        self.chkBx_software = Checkbutton(self, text='Software Engineering', onvalue='COMP120', offvalue='',  variable=self.comboBtnValue3, bg=self.color)
+        self.comboBtnValue1.set("COMP100")
+        self.comboBtnValue2.set("COMP213")
         
         self.entry_name = Entry(self, textvariable = self.userNameValue, font=self.font)
         self.userNameValue.set("Prince Duru")
 
-        self.cmb_programming = Combobox(self, textvariable=self.progNameValue)
-        self.cmb_programming['values'] = ("AI", "Gaming", "Health", "Software")
+        self.cmbBx_programming = Combobox(self, textvariable=self.progNameValue)
+        self.cmbBx_programming['values'] = ("AI", "Gaming", "Health", "Software")
         self.progNameValue.set("AI")
 
-        self.btn_reset = Button(self, text="Reset", command=self.reset_button_click, font=self.font)
-        self.btn_ok = Button(self, text="Ok", command=self.ok_button_click, font=self.font)
-        self.btn_exit = Button(self, text="Exit", command=self.exit_button_click, font=self.font)
+        self.reset_Button = Button(self, text="Reset", command=self.resetButton, font=self.font)
+        self.ok_Button = Button(self, text="Ok", command=self.okButton, font=self.font)
+        self.exit_Button = Button(self, text="Exit", command=self.exitButton, font=self.font)
 
         # add controls to gridview
-        self.lbl_title.grid(row=0, column=0, padx=10, columnspan=3)
-        self.lbl_full_name.grid(row=1, column=0, padx=10)
-        self.lbl_residency.grid(row=2, column=0, padx=10)
-        self.lbl_program.grid(row=4, column=0, padx=10)
-        self.lbl_courses.grid(row=5, column=0, padx=10)
-        self.rdb_domestic.grid(row=2, column=1,  padx=10, sticky="w") #sticky="w",
-        self.rdb_international.grid(row=3, column=1, sticky="w", padx=10)
-        self.chk_programming.grid(row=5, column=1, padx=10, sticky="w")
-        self.chk_web.grid(row=6, column=1, padx=10, sticky="w")
-        self.chk_software.grid(row=7, column=1, padx=10, sticky="w")
+        self.label_title.grid(row=0, column=0, padx=10, columnspan=3)
+        self.label_full_name.grid(row=1, column=0, padx=10)
+        self.label_residency.grid(row=2, column=0, padx=10)
+        self.label_program.grid(row=4, column=0, padx=10)
+        self.label_courses.grid(row=5, column=0, padx=10)
+        self.radioBtn_domestic.grid(row=2, column=1,  padx=10, sticky="w") #sticky="w",
+        self.radioBtn_international.grid(row=3, column=1, sticky="w", padx=10)
+        self.chkBx_programming.grid(row=5, column=1, padx=10, sticky="w")
+        self.chkBx_web.grid(row=6, column=1, padx=10, sticky="w")
+        self.chkBx_software.grid(row=7, column=1, padx=10, sticky="w")
 
-        self.cmb_programming.grid(row=4, column=1, padx=10, sticky="nsew")
+        self.cmbBx_programming.grid(row=4, column=1, padx=10, sticky="nsew")
 
         self.entry_name.grid(row=1, column=1, padx=10, sticky=E+W+N+S)
         self.entry_name.config(width=30)
-        self.btn_reset.grid(row=8, column=0, padx=10, pady=10)
-        self.btn_reset.config(height=1, width=12)
-        self.btn_ok.grid(row=8, column=1, padx=10, pady=10)
-        self.btn_ok.config(height=1, width=12)
-        self.btn_exit.grid(row=8, column=2, padx=10, pady=10)
-        self.btn_exit.config(height=1, width=12)
+        self.reset_Button.grid(row=8, column=0, padx=10, pady=10)
+        self.reset_Button.config(height=1, width=12)
+        self.ok_Button.grid(row=8, column=1, padx=10, pady=10)
+        self.ok_Button.config(height=1, width=12)
+        self.exit_Button.grid(row=8, column=2, padx=10, pady=10)
+        self.exit_Button.config(height=1, width=12)
 
-
-
-
-    def ok_button_click(self):
+    def okButton(self):
         try:
             name = self.entry_name.get()
             residency = ""
@@ -88,13 +85,13 @@ class HelloCentennial(Frame):
             if self.radioBtnvalue.get() == 'dom':
                 residency = "Domestic"
 
-            program = self.cmb_programming.get()
+            program = self.cmbBx_programming.get()
             courses = ""
-            if self.cb.get() == 'COMP100':
+            if self.comboBtnValue1.get() == 'COMP100':
                 courses += "Programming"
-            if self.cb1.get() == 'COMP213':
+            if self.comboBtnValue2.get() == 'COMP213':
                 courses += "\nWeb Design"
-            if self.cb2.get() == 'COMP120':
+            if self.comboBtnValue3.get() == 'COMP120':
                 courses += "\nSoftware Engineering"
             result = name + "\n" + program + "\n" + residency + "\n" + courses
             messagebox.showinfo(title="Information", message=result)
@@ -103,48 +100,41 @@ class HelloCentennial(Frame):
             messagebox.showinfo(title="Error", message="Please enter valid value.")
 
 
-    def reset_button_click(self):
-        self.userNameValue.set('')
-        self.cb.set(0)
-        self.cb1.set(0)
-        self.cb2.set(0)
-        self.cmb_programming.set('')
+    def resetButton(self):
+        self.userNameValue.set("Prince Duru")
+        self.comboBtnValue1.set("COMP100")
+        self.comboBtnValue2.set("COMP213")
+        self.comboBtnValue3.set(0)
+        self.cmbBx_programming.set('AI')
       
 
 
     # exit button event
-    def exit_button_click(self):
-        the_window.destroy()
+    def exitButton(self):
+        App.destroy()
 
     
-
-    def resizeRow(self):
-        item_list = [self.lbl_title, self.lbl_full_name, self.lbl_residency, self.lbl_program, self.lbl_courses, \
-        self.rdb_domestic, self.rdb_international, self.chk_programming, self.chk_web, self.chk_software, \
-        self.cmb_programming, self.entry_name, self.btn_reset, self.btn_ok, self.btn_exit]
+    def resizeApp(self):
+        item_list = [self.label_title, self.label_full_name, self.label_residency, self.label_program, self.label_courses, \
+        self.radioBtn_domestic, self.radioBtn_international, self.chkBx_programming, self.chkBx_web, self.chkBx_software, \
+        self.cmbBx_programming, self.entry_name, self.reset_Button, self.ok_Button, self.exit_Button]
         
-        Grid.columnconfigure(frameA, self.column_number, weight=1)
+        Grid.columnconfigure(appFrame, self.column_number, weight=1)
 
         for item in item_list:
-            Grid.rowconfigure(frameA, self.row_number, weight=1)
-            # Grid.columnconfigure(frameA, self.column_number, weight=1)
+            Grid.rowconfigure(appFrame, self.row_number, weight=1)
             self.row_number += 1
-            # self.column_number += 1
 
-the_window = Tk()
+App = Tk()
+App.title("Centennial College")
 
-# set title of root frame
-frameA = HelloCentennial(the_window)
-# frameA.grid(row=0, column=0, padx=10, pady=10)
-frameA.pack(padx=8, pady=7,expand=YES, fill=BOTH)
-
-frameA.resizeRow()
-
-the_window.title("Centennial College")
-frameA["background"] = "#4EA004"
+appFrame = SurveyApp(App)
+appFrame.pack(padx=8, pady=7,expand=YES, fill=BOTH)
+appFrame.resizeApp()
+appFrame["background"] = "#4EA004"
 
 if __name__ == "__main__":
 
     # Create GUI
-    the_window.mainloop()
+    App.mainloop()
 
